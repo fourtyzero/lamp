@@ -56,7 +56,7 @@ module.exports.routes = {
   'POST  /api/v1/deliver-contact-form-message': {
     action: 'deliver-contact-form-message',
   },
-  '/api/v1/product/category': {action: 'product/category/get'},
+  '/api/v1/product/category': {action: 'product/category/get'}
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝

@@ -48,9 +48,6 @@ module.exports = {
       defaultsTo: true,
     },
     // details information
-    brand: {
-      type: 'string',
-    },
     spec: {
       type: 'number',
     },
@@ -95,6 +92,14 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    // many-to-one
+    brand: {
+      model: 'brand'
+    },
+    // one-way
+    category: {
+      model: 'category',
+    },
     // one-to-many
     reviews: {
       collection: 'review',

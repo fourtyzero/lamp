@@ -21,7 +21,9 @@
     "@sailshq/eslint": "^4.19.3",
     "@sailshq/htmlhint": "^0.9.16",
     "@sailshq/lesshint": "^4.6.6",
+    "faker": "^4.1.0",
     "grunt": "^1.0.3",
+    "markdown-table": "^1.1.2",
     "sails-hook-grunt": "^3.0.2"
   },
   "scripts": {
