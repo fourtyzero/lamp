@@ -43,8 +43,22 @@
     "async": true,
 
     // Models:
-    "User": true
-    
+    "User": true,
+    "Address": true,
+    "Brand": true,
+    "Cart": true,
+    "Category": true,
+    "Comment": true,
+    "Coupon": true,
+    "Footprint": true,
+    "Identity": true,
+    "Invoice": true,
+    "OrderItem": true,
+    "Order": true,
+    "Product": true,
+    "Review": true,
+    "Shipment": true
+
     // …and any others.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   },

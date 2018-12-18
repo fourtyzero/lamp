@@ -64,7 +64,7 @@
 
 ## users
 
-- user/messages
+- user/message
 
   get latest messages with id bigger than ${id}
   - from: id

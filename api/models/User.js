@@ -220,6 +220,10 @@ email status until they click the link in the confirmation email.`,
       collection: 'address',
       via: 'owner',
     },
+    messages: {
+      collection: 'message',
+      via: 'owner',
+    },
     orders: {
       collection: 'order',
       via: 'owner',

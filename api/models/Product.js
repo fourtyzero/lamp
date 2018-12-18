@@ -17,6 +17,9 @@ module.exports = {
       type: 'number',
       description: '库存数目'
     },
+    sales: {
+      type: 'number',
+    },
     images: {
       description: '图片数组, 使用json字符串保存',
       type: 'json',
@@ -53,7 +56,11 @@ module.exports = {
     },
     specUnit: {
       type: 'string',
-      defaultsTo: '支',
+      defaultsTo: '克',
+    },
+    specQuantifier: {
+      type: 'string',
+      defaultsTo: '份'
     },
     origin: {
       type: 'string',
