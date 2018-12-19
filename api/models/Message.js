@@ -15,6 +15,10 @@ module.exports = {
     title: {
       type: 'string',
     },
+    digest: {
+      type: 'string',
+      description: 'a short summary of the whole content'
+    },
     content: {
       type: 'string',
     },

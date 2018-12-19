@@ -11,7 +11,9 @@ module.exports = {
     sortOrder: {
       type: 'number',
     },
-    filters: {},
+    filters: {
+      type: 'json',
+    },
     page: {
       type: 'number',
     },

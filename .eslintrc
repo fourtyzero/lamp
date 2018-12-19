@@ -53,6 +53,7 @@
     "Footprint": true,
     "Identity": true,
     "Invoice": true,
+    "Message": true,
     "OrderItem": true,
     "Order": true,
     "Product": true,

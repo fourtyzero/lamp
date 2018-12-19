@@ -33,7 +33,7 @@ module.exports = {
       type: 'string',
       description: '详细地址'
     },
-    postCode: {
+    zipCode: {
       type: 'string'
     },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

@@ -28,9 +28,8 @@ async function initProduct() {
   const categories = await Category.find();
   const brands = await Brand.find();
   const ps = _.range(0, 300).map(() => {
-    const [r1, r2] = [categories, brands].map((c) => _.random(0, c.length - 1));
     return {
-      title: faker.lorem.word,
+      title: faker.lorem.word(),
       quantity: _.random(10, 9999),
       sales: _.random(5, 1000000),
       images: [],
@@ -68,27 +67,33 @@ async function initProduct() {
       serviceProvider: faker.lorem.sentence(),
       hint: faker.lorem.paragraph(),
 
-      brand: brands[r2],
-      category: categories[r1],
+      brand: arrayElement(brands).id,
+      category: arrayElement(categories).id,
     };
   });
   await Product.createEach(ps);
 }
 async function initUser() {
-  const users = _.range(0, 20).map(() => {
-    return {
-      name: faker.name.findName(),
-      nickname: faker.name.title(),
-      avatar: faker.image.avatar(),
-      phone: faker.phone.phoneNumber(),
-      money: _.random(500, 10000),
-    };
-  });
-  users.push({
+  const genUser = (other) => ({...{
+    emailAddress: faker.internet.email(),
+    password: faker.lorem.sentence(),
+    fullName: faker.name.findName(),
+    isSuperAdmin: false,
+    nickname: faker.name.title(),
+    avatar: faker.image.avatar(),
+    phone: faker.phone.phoneNumber(),
+    money: _.random(500, 10000),
+    invitationCode: faker.random.uuid(),
+    lampPoints: _.random(500, 10000),
+    points: _.random(500, 20000),
+    IDVerified: false,
+  }, ...other});
+  const users = _.range(0, 20).map(genUser);
+  users.push(genUser({
     name: 'test',
     nickname: 'testtest',
     avatar: faker.image.avatar(),
-  });
+  }));
   await User.createEach(users);
 }
 async function initReview() {
@@ -127,12 +132,11 @@ async function initAddress() {
 }
 async function initOrder() {
   const users = await User.find();
-  const orders = _.range(0,200)
-  .map(() => ({
+  const orders = _.range(0, 200).map(() => ({
     shippedAt: faker.date.past(),
-    deliveredAt: faker.date.soon(),
+    deliveredAt: faker.date.recent(),
     payedAt: faker.date.past(),
-    status: arrayElement(['toPay', 'closed', 'finished', 'cancelled']),
+    status: arrayElement(['toPay', 'closed', 'finished', 'cancelled', 'toShip', 'toConfirm']),
     owner: arrayElement(users).id,
   }));
   await Order.createEach(orders);
@@ -140,14 +144,23 @@ async function initOrder() {
 async function initOrderItem() {
   const orders = await Order.find();
   const products = await Product.find();
-  const items = _.range(0, )
-  .map(() => ({
+  const items = _.range(0).map(() => ({
     quantity: _.random(0, 10),
     price: _.random(10, 200, true).toFixed(2),
-    order: arrayElement(orders).id ,
+    order: arrayElement(orders).id,
     product: arrayElement(products).id,
   }));
   await OrderItem.createEach(items);
+}
+async function initMessage() {
+  const users = await User.find();
+  const msgs = _.range(0, 100).map(() => ({
+    title: faker.lorem.word(),
+    digest: faker.lorem.sentence(),
+    content: faker.lorem.paragraphs(3),
+    owner: arrayElement(users).id,
+  }));
+  await Message.createEach(msgs);
 }
 module.exports = {
   friendlyName: 'Init db',
@@ -173,5 +186,6 @@ module.exports = {
     await initAddress();
     await initOrder();
     await initOrderItem();
+    await initMessage();
   },
 };
