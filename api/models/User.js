@@ -12,7 +12,7 @@ module.exports = {
 
     emailAddress: {
       type: 'string',
-      required: true,
+      // required: true,
       unique: true,
       isEmail: true,
       maxLength: 200,
@@ -30,7 +30,7 @@ module.exports = {
 
     fullName: {
       type: 'string',
-      required: true,
+      // required: true,
       description: 'Full representation of the user\'s name',
       maxLength: 120,
       example: 'Lisa Microwave van der Jenny',
@@ -168,7 +168,9 @@ email status until they click the link in the confirmation email.`,
       example: 1502844074211,
     },
 
-
+    name: {
+      type: 'string',
+    },
     avatar: {
       type: 'string',
     },

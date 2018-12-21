@@ -8,7 +8,12 @@ module.exports = {
 
 
   inputs: {
-
+    uid: {
+      type: 'string'
+    },
+    aid: {
+      type: 'string'
+    }
   },
 
 
@@ -17,10 +22,11 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
-
+  // FIXME: security!
+  fn: async function ({uid, aid}, exits) {
+    await Address.destroy({id: aid});
     // All done.
-    return;
+    return exits.success();
 
   }
 

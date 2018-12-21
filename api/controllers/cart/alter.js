@@ -8,7 +8,15 @@ module.exports = {
 
 
   inputs: {
-
+    cid: {
+      type: 'string'
+    },
+    pid: {
+      type: 'string'
+    },
+    delta: {
+      type: 'number'
+    }
   },
 
 
@@ -17,8 +25,13 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
-
+  fn: async function ({cid, pid ,delta}) {
+    const item  = await CartItem.findOne({belongsTo: cid,
+    product: pid});
+    if(item) {
+      await CartItem.updateOne({id: item.id})
+      .set({quantity: item.quantity + delta})
+    }
     // All done.
     return;
 

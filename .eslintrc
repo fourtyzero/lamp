@@ -47,6 +47,7 @@
     "Address": true,
     "Brand": true,
     "Cart": true,
+    "CartItem": true,
     "Category": true,
     "Comment": true,
     "Coupon": true,

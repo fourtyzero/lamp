@@ -8,21 +8,21 @@ module.exports = {
       type: 'string',
     },
     field: {
-      type: 'string'
+      type: 'string',
     },
     value: {
-      type: 'string'
-    }
+      type: 'string',
+    },
   },
 
   exits: {},
 
-  fn: async function({ uid, field, value }) {
+  fn: async function({ uid, field, value }, exits) {
     // All done.
-    const user = await User.findOne({id: uid});
-    if(user) {
-      await User.
+    const user = await User.findOne({ id: uid });
+    if (user) {
+      await User.updateOne({ id: uid }).set({ field: value });
     }
-    return;
+    return exits.success();
   },
 };

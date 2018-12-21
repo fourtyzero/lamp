@@ -8,7 +8,9 @@ module.exports = {
 
 
   inputs: {
-
+    cid: {
+      type: 'string'
+    }
   },
 
 
@@ -17,10 +19,11 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
-
+  fn: async function ({cid}) {
+    const cart = await Cart.updateOne({id: cid})
+    .set({items: []});
     // All done.
-    return;
+    return cart;
 
   }
 

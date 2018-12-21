@@ -1,30 +1,25 @@
 module.exports = {
-
-
   friendlyName: 'Add',
-
 
   description: 'Add cart.',
 
-
   inputs: {
-    token: {
-      type:'string',
-    }
+    uid: {
+      type: 'string',
+    },
+    cid: {
+      type: 'string',
+    },
+    pid: {
+      type: 'string',
+    },
   },
 
+  exits: {},
 
-  exits: {
-
-  },
-
-
-  fn: async function (inputs) {
-
+  fn: async function({ cid, pid }) {
+    await CartItem.create({ belongsTo: cid, product: pid, quantity: 0, });
     // All done.
-    return;
-
-  }
-
-
+    return this.res.ok();
+  },
 };

@@ -74,6 +74,17 @@ module.exports.routes = {
   '/api/v1/user/reviews': { action: 'user/reviews' },
   '/api/v1/user/footprints': { action: 'user/footprints' },
 
+
+  'POST /api/v1/user/review/create': { action: 'review/create' },
+
+  'POST /api/v1/user/footprints/create': { action: 'footprint/create' },
+  'POST /api/v1/user/footprints/clear': { action: 'footprint/clear' },
+
+  'POST /api/v1/user/cart/add': { action: 'cart/add' },
+  'POST /api/v1/user/cart/remove': { action: 'cart/remove' },
+  'POST /api/v1/user/cart/clear': { action: 'cart/clear' },
+  'POST /api/v1/user/cart/alter': { action: 'cart/alter' },
+
   '/api/v1/user/orders': { action: 'user/orders' },
 
   'POST /api/v1/user/update' : {action: 'user/update'},

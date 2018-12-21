@@ -24,7 +24,8 @@ module.exports = {
 
     // one-to-many one-way
     items: {
-      collection: 'orderitem'
+      collection: 'cartitem',
+      via: 'belongsTo',
     },
     // one-to-one
     owner: {
