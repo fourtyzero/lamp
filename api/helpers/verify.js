@@ -7,8 +7,8 @@ module.exports = {
 
   inputs: {
     token: {
-      type: 'string'
-    }
+      type: 'string',
+    },
   },
 
   exits: {
@@ -17,8 +17,8 @@ module.exports = {
     },
   },
 
-  fn: async function({token}) {
+  fn: async function({ token }) {
     // TODO
-    return jwt.verify(token, sails.config.jwt.token)
+    return jwt.verify(token, sails.config.jwt.token);
   },
 };

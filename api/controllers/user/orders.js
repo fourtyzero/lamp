@@ -12,9 +12,6 @@ module.exports = {
       type: 'string',
 
     },
-    filter: {
-
-    },
     page: {
       type: 'number',
       defaultsTo: 1

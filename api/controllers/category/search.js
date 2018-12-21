@@ -16,7 +16,6 @@ module.exports = {
     order: {
       type: 'number',
       isIn: [1, -1],
-      required: true,
       defaultsTo: 1,
     },
     page: {

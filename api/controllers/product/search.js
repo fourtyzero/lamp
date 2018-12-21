@@ -10,7 +10,6 @@ module.exports = {
     },
     page: {
       type: 'number',
-      required: true,
       defaultsTo: 1,
     },
   },

@@ -1,7 +1,6 @@
 const _ = require('lodash');
 
 module.exports = {
-
   friendlyName: 'Login',
 
   description: 'Login user.',
@@ -21,7 +20,9 @@ module.exports = {
     success: {
       description: 'yeah seccess',
     },
-
+    notExists: {
+      description: 'not exists',
+    },
     badCombo: {
       description: `The provided email and password combination does not
       match any user in the database.`,
@@ -34,18 +35,17 @@ module.exports = {
       name: name,
     });
     if (!user) {
-      throw 'badCombo';
+      throw 'notExists';
     }
     await sails.helpers.passwords
       .checkPassword(password, user.password)
       .intercept('incorrect', 'badCombo');
     // return a token
     const token = await sails.helpers.sign.with({
-      payload: {uid: user.id}
+      payload: { uid: user.id },
     });
-    // TODO:
-    // if(user)
-    // All done.
-    return _.omit({...user, token}, password);
+    // return _.omit({ ...user, token }, ['password']);
+    return exits.success(_.omit({ ...user, token }, ['password']));
+    // return exits.success('ok..');
   },
 };

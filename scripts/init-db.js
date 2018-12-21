@@ -99,7 +99,7 @@ async function initProduct() {
       group: arrayElement(['in-sale', 'starter']),
       brand: arrayElement(brands).id,
       category: c.id,
-      tag: arrayElement( c.tags).id,
+      tag: arrayElement(c.tags).id,
     };
   });
   await Product.createEach(ps);
@@ -108,6 +108,7 @@ async function initUser() {
   const genUser = (other) => ({
     ...{
       emailAddress: faker.internet.email(),
+      name: faker.lorem.word(),
       password: faker.lorem.sentence(),
       fullName: faker.name.findName(),
       isSuperAdmin: false,
@@ -127,10 +128,23 @@ async function initUser() {
     genUser({
       name: 'test',
       nickname: 'testtest',
+      password: await sails.helpers.passwords.hashPassword('123456'),
       avatar: faker.image.avatar(),
     })
   );
+  // and for each user create a cart
   await User.createEach(users);
+}
+async function initCart() {
+  const users = await User.find();
+  const carts = _.range(0, users.length).map(() => ({}));
+  await Cart.createEach(carts);
+  const cs = await Cart.find();
+  const ps = [];
+  cs.forEach((cart, index) => {
+    ps.push(User.addToCollection(users[index].id, 'cart').members([cart.id]));
+  });
+  await Promise.all(ps);
 }
 async function initReview() {
   const products = await Product.find();
@@ -236,6 +250,7 @@ module.exports = {
     await initBrand();
     await initProduct();
     await initUser();
+    await initCart();
     await initReview();
     await initIdentity();
     await initComment();

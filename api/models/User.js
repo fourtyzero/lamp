@@ -212,7 +212,7 @@ email status until they click the link in the confirmation email.`,
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    // one-to-on
+    // one-to-one
     cart: {
       collection: 'cart',
       via: 'owner',

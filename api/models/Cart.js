@@ -31,7 +31,6 @@ module.exports = {
     owner: {
       model: 'user',
       // required: true,
-      unique: true,
     }
   },
 
