@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Diaper',
+  friendlyName: 'Alter',
 
 
-  description: 'Diaper babycare.',
+  description: 'Alter cart.',
 
 
   inputs: {

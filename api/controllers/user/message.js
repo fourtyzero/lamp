@@ -1,32 +1,20 @@
 module.exports = {
-
-
   friendlyName: 'Messages',
-
 
   description: 'Messages user.',
 
-
   inputs: {
-    id: {
-      type: 'string'
-    }
+    uid: {
+      type: 'string',
+    },
   },
 
+  exits: {},
 
-  exits: {
-
-  },
-
-
-  fn: async function (inputs) {
-    const {id} = inputs;
-    const user = await User.findOne({id}).populate('messages');
+  fn: async function({ uid }) {
+    const user = await User.findOne({ uid }).populate('messages');
 
     // All done.
     return user.messages;
-
-  }
-
-
+  },
 };

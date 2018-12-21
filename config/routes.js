@@ -56,7 +56,36 @@ module.exports.routes = {
   'POST  /api/v1/deliver-contact-form-message': {
     action: 'deliver-contact-form-message',
   },
-  '/api/v1/product/category': {action: 'product/category/get'},
+  '/api/v1/product/': { action: 'product/byid' },
+  '/api/v1/product/search': { action: 'product/search' },
+  '/api/v1/product/reviews': { action: 'product/reviews' },
+
+  '/api/v1/category/search/': { action: 'category/search' },
+  '/api/v1/category/tags/': { action: 'category/tags' },
+  '/api/v1/tag/product': { action: 'tag/product' },
+
+  '/api/v1/review': { action: 'review/byid' },
+
+  '/api/v1/brand/': { action: 'brand/byid' },
+
+  '/api/v1/user/login': { action: 'user/login' }, //TODO:
+  '/api/v1/user/logout': { action: 'user/logout' }, //TODO:
+  '/api/v1/user/message': { action: 'user/message' }, 
+  '/api/v1/user/reviews': { action: 'user/reviews' },
+  '/api/v1/user/footprints': { action: 'user/footprints' },
+
+  '/api/v1/user/orders': { action: 'user/orders' },
+
+  'POST /api/v1/user/update' : {action: 'user/update'},
+
+  'POST /api/v1/user/address/create' : {action: 'address/create'},
+  'POST /api/v1/user/address/delete' : {action: 'address/delete'},
+  'POST /api/v1/user/address/update' : {action: 'address/update'},
+
+
+  '/api/v1/message': { action: 'message/byid' }, 
+
+
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝

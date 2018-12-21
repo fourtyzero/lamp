@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Healthcare',
+  friendlyName: 'Remove',
 
 
-  description: 'Healthcare recommend.',
+  description: 'Remove cart.',
 
 
   inputs: {

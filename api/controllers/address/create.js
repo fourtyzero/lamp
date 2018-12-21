@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Hot',
+  friendlyName: 'Create',
 
 
-  description: 'Hot search.',
+  description: 'Create address.',
 
 
   inputs: {

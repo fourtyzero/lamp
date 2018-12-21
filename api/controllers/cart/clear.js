@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Hot',
+  friendlyName: 'Clear',
 
 
-  description: 'Hot food.',
+  description: 'Clear cart.',
 
 
   inputs: {

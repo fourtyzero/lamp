@@ -1,14 +1,16 @@
 module.exports = {
 
 
-  friendlyName: 'Babycare',
+  friendlyName: 'Add',
 
 
-  description: 'Babycare recommend.',
+  description: 'Add cart.',
 
 
   inputs: {
-
+    token: {
+      type:'string',
+    }
   },
 
 

@@ -13,6 +13,9 @@ module.exports = {
     title: {
       type: 'string',
     },
+    subtitle: {
+      type: 'string',
+    },
     quantity: {
       type: 'number',
       description: '库存数目'
@@ -90,7 +93,10 @@ module.exports = {
       description: '提示信息',
       type: 'string'
     },
-
+    group: {
+      type: 'string',
+      isIn: ['in-sale', 'starter']
+    },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -106,6 +112,9 @@ module.exports = {
     // one-way
     category: {
       model: 'category',
+    },
+    tag: {
+      model: 'tag',
     },
     // one-to-many
     reviews: {

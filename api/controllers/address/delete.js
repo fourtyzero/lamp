@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Today',
+  friendlyName: 'Delete',
 
 
-  description: 'Today recommend.',
+  description: 'Delete address.',
 
 
   inputs: {

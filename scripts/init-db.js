@@ -14,8 +14,37 @@ const cats = [
   '母婴用品',
 ];
 const arrayElement = faker.random.arrayElement;
+const fakeImage = (w, h) => `http://dummyimage.com/${w}x${h}`;
+const randomChinese = (start, end) => {
+  start = start || 19968;
+  end = end || 30000;
+  return String.fromCharCode(_.random(start, end));
+};
+
+const loremWord = (n) =>
+  _.range(0, n)
+    .map(() => randomChinese())
+    .join('');
+
 async function initCategory() {
   await Category.createEach(cats.map((c) => ({ title: c })));
+}
+async function initTag() {
+  // create 200 tags
+  const cats = await Category.find();
+  let tags = _.range(0, 200).map(() => ({
+    title: loremWord(arrayElement([2, 3, 4])),
+    belongsTo: arrayElement(cats).id,
+  }));
+  // add sepcial tag to '母婴用品'
+  const bc = cats.find((c) => c.title === '母婴用品');
+  const ts = ['奶粉', '纸尿裤'];
+  const tts = ts.map((t) => ({
+    title: t,
+    belongsTo: bc.id,
+  }));
+  tags = [...tags, ...tts];
+  await Tag.createEach(tags);
 }
 async function initBrand() {
   const brands = _.range(0, 30).map(() => ({
@@ -25,9 +54,10 @@ async function initBrand() {
   await Brand.createEach(brands);
 }
 async function initProduct() {
-  const categories = await Category.find();
+  const categories = await Category.find().populate('tags');
   const brands = await Brand.find();
   const ps = _.range(0, 300).map(() => {
+    const c = arrayElement(categories);
     return {
       title: faker.lorem.word(),
       quantity: _.random(10, 9999),
@@ -66,34 +96,40 @@ async function initProduct() {
       ]),
       serviceProvider: faker.lorem.sentence(),
       hint: faker.lorem.paragraph(),
-
+      group: arrayElement(['in-sale', 'starter']),
       brand: arrayElement(brands).id,
-      category: arrayElement(categories).id,
+      category: c.id,
+      tag: arrayElement( c.tags).id,
     };
   });
   await Product.createEach(ps);
 }
 async function initUser() {
-  const genUser = (other) => ({...{
-    emailAddress: faker.internet.email(),
-    password: faker.lorem.sentence(),
-    fullName: faker.name.findName(),
-    isSuperAdmin: false,
-    nickname: faker.name.title(),
-    avatar: faker.image.avatar(),
-    phone: faker.phone.phoneNumber(),
-    money: _.random(500, 10000),
-    invitationCode: faker.random.uuid(),
-    lampPoints: _.random(500, 10000),
-    points: _.random(500, 20000),
-    IDVerified: false,
-  }, ...other});
+  const genUser = (other) => ({
+    ...{
+      emailAddress: faker.internet.email(),
+      password: faker.lorem.sentence(),
+      fullName: faker.name.findName(),
+      isSuperAdmin: false,
+      nickname: faker.name.title(),
+      avatar: faker.image.avatar(),
+      phone: faker.phone.phoneNumber(),
+      money: _.random(500, 10000),
+      invitationCode: faker.random.uuid(),
+      lampPoints: _.random(500, 10000),
+      points: _.random(500, 20000),
+      IDVerified: false,
+    },
+    ...other,
+  });
   const users = _.range(0, 20).map(genUser);
-  users.push(genUser({
-    name: 'test',
-    nickname: 'testtest',
-    avatar: faker.image.avatar(),
-  }));
+  users.push(
+    genUser({
+      name: 'test',
+      nickname: 'testtest',
+      avatar: faker.image.avatar(),
+    })
+  );
   await User.createEach(users);
 }
 async function initReview() {
@@ -110,6 +146,17 @@ async function initReview() {
     };
   });
   await Review.createEach(reviews);
+}
+async function initIdentity() {
+  const users = await User.find();
+  const ids = _.range(0, 40).map(() => ({
+    name: faker.name.findName(),
+    number: faker.random.uuid(),
+    portrait: fakeImage(480, 320),
+    back: fakeImage(480, 320),
+    owner: arrayElement(users).id,
+  }));
+  await Identity.createEach(ids);
 }
 async function initComment() {
   // for every review, create comments
@@ -136,7 +183,14 @@ async function initOrder() {
     shippedAt: faker.date.past(),
     deliveredAt: faker.date.recent(),
     payedAt: faker.date.past(),
-    status: arrayElement(['toPay', 'closed', 'finished', 'cancelled', 'toShip', 'toConfirm']),
+    status: arrayElement([
+      'toPay',
+      'closed',
+      'finished',
+      'cancelled',
+      'toShip',
+      'toConfirm',
+    ]),
     owner: arrayElement(users).id,
   }));
   await Order.createEach(orders);
@@ -178,10 +232,12 @@ module.exports = {
   fn: async function() {
     // TODO
     await initCategory();
+    await initTag();
     await initBrand();
     await initProduct();
     await initUser();
     await initReview();
+    await initIdentity();
     await initComment();
     await initAddress();
     await initOrder();

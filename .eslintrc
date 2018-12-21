@@ -58,7 +58,8 @@
     "Order": true,
     "Product": true,
     "Review": true,
-    "Shipment": true
+    "Shipment": true,
+    "Tag": true,
 
     // …and any others.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
