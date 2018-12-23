@@ -8,7 +8,7 @@ module.exports = {
 
 
   inputs: {
-    id: {
+    token: {
       type: 'string'
     }
   },
@@ -19,11 +19,11 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
-    const {id} = inputs;
+  fn: async function (inputs, exits) {
+    const {id} = this.req.uid;
     const user = await User.findOne({id}).populate('footprints');
     // All done.
-    return user.footprints;
+    return exits.success(user.footprints);
 
   }
 

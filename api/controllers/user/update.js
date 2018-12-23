@@ -4,7 +4,7 @@ module.exports = {
   description: 'Update user.',
 
   inputs: {
-    uid: {
+    token: {
       type: 'string',
     },
     field: {
@@ -15,14 +15,22 @@ module.exports = {
     },
   },
 
-  exits: {},
-
-  fn: async function({ uid, field, value }, exits) {
-    // All done.
-    const user = await User.findOne({ id: uid });
-    if (user) {
-      await User.updateOne({ id: uid }).set({ field: value });
+  exits: {
+    notAuthorized: {
+      responseType: 'unauthorized'
     }
-    return exits.success();
+  },
+
+  fn: async function({ token, field, value }, exits) {
+    // const { id } = await sails.helpers.verify(token);
+    // if (!id) {return exits.notAuthorized();}
+    const id = this.req.uid;
+    const user = await User.findOne({ id });
+    if (user) {
+      const updated =  await User.updateOne({ id }).set({ [field]: value });
+      return exits.success({field, value: updated[field]});
+    }else {
+      throw 'notAuthorized';
+    }
   },
 };

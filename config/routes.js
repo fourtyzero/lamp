@@ -60,6 +60,8 @@ module.exports.routes = {
   '/api/v1/product/search': { action: 'product/search' },
   '/api/v1/product/reviews': { action: 'product/reviews' },
 
+
+  '/api/v1/category/all': { action: 'category/all' },
   '/api/v1/category/search/': { action: 'category/search' },
   '/api/v1/category/tags/': { action: 'category/tags' },
   '/api/v1/tag/product': { action: 'tag/product' },
@@ -73,8 +75,8 @@ module.exports.routes = {
   'POST /api/v1/user/logout': { action: 'user/logout' },
 
   '/api/v1/user/message': { action: 'user/message' },
-  '/api/v1/user/reviews': { action: 'user/reviews' },
-  '/api/v1/user/footprints': { action: 'user/footprints' },
+  '/api/v1/user/review': { action: 'user/review' },
+  '/api/v1/user/footprint': { action: 'user/footprint' },
 
   'POST /api/v1/user/review/create': { action: 'review/create' },
 
@@ -86,7 +88,7 @@ module.exports.routes = {
   'POST /api/v1/user/cart/clear': { action: 'cart/clear' },
   'POST /api/v1/user/cart/alter': { action: 'cart/alter' },
 
-  '/api/v1/user/orders': { action: 'user/orders' },
+  '/api/v1/user/order': { action: 'user/order' },
 
   'POST /api/v1/user/update': { action: 'user/update' },
 

@@ -18,4 +18,23 @@ module.exports.policies = {
   // 'view-homepage-or-redirect': true,
   // 'deliver-contact-form-message': true,
 
+  'review/create': 'is-logged-in',
+
+  'footprint/create': 'is-logged-in',
+  'footprint/clear': 'is-logged-in',
+
+  'cart/add': 'is-logged-in',
+  'cart/remove': 'is-logged-in',
+  'cart/clear': 'is-logged-in',
+  'cart/alter': 'is-logged-in',
+
+  'user/update': 'is-logged-in',
+
+  'address/create': 'is-logged-in',
+  'address/delete': 'is-logged-in',
+  'address/update': 'is-logged-in',
+
+  // 'user/*': 'is-logged-in'
+  'user/message': 'is-logged-in'
+
 };

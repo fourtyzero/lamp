@@ -11,9 +11,9 @@ module.exports = {
 
   exits: {},
 
-  fn: async function({ id }) {
+  fn: async function({ id }, exits) {
     const msg = await Message.findOne({ id });
     // All done.
-    return msg;
+    return exits.success(msg);
   },
 };

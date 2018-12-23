@@ -4,17 +4,18 @@ module.exports = {
   description: 'Messages user.',
 
   inputs: {
-    uid: {
+    token: {
       type: 'string',
     },
   },
 
   exits: {},
 
-  fn: async function({ uid }) {
-    const user = await User.findOne({ uid }).populate('messages');
+  fn: async function({  }, exits) {
+    const id = this.req.uid;
+    const user = await User.findOne({ id }).populate('messages');
 
     // All done.
-    return user.messages;
+    return  exits.success(user.messages);
   },
 };

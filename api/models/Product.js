@@ -30,6 +30,10 @@ module.exports = {
     price: {
       type: 'number',
     },
+    bargain: {
+      type: 'number',
+      description: '折扣',
+    },
     tariff: {
       description: '关税',
       type: 'number',
@@ -65,7 +69,7 @@ module.exports = {
       type: 'string',
       defaultsTo: '份'
     },
-    origin: {
+    country: {
       type: 'string',
     },
     storeMethod: {
@@ -96,6 +100,10 @@ module.exports = {
     group: {
       type: 'string',
       isIn: ['in-sale', 'starter']
+    },
+    sellTime: {
+      type: 'number',
+      description: '开售日期'
     },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

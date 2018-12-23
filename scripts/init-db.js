@@ -15,6 +15,7 @@ const cats = [
 ];
 const arrayElement = faker.random.arrayElement;
 const fakeImage = (w, h) => `http://dummyimage.com/${w}x${h}`;
+const loremImage = (w, h) => `http://picsum.photos/${w}x${h}`;
 const randomChinese = (start, end) => {
   start = start || 19968;
   end = end || 30000;
@@ -34,6 +35,7 @@ async function initTag() {
   const cats = await Category.find();
   let tags = _.range(0, 200).map(() => ({
     title: loremWord(arrayElement([2, 3, 4])),
+    image: loremImage(200, 200),
     belongsTo: arrayElement(cats).id,
   }));
   // add sepcial tag to '母婴用品'
@@ -63,6 +65,7 @@ async function initProduct() {
       quantity: _.random(10, 9999),
       sales: _.random(5, 1000000),
       images: [],
+      bargain: _.random(0, 0.5, true).toFixed(2),
       price: _.random(10, 500, true).toFixed(2),
       tariff: _.random(0.01, 0.3, true),
       postage: _.random(5, 20),
@@ -71,14 +74,14 @@ async function initProduct() {
       reddemRestrict: _.random(1, 5),
       supportSeven: faker.random.boolean(),
       spec: _.random(20, 100),
-      origin: faker.random.arrayElement([
+      country: faker.random.arrayElement([
         'japan',
         'china',
-        'english',
+        'england',
         'america',
         'australia',
       ]),
-      sotreMethod: faker.lorem.sentence(),
+      storeMethod: faker.lorem.sentence(),
       productionDate: faker.date.past(),
       shelfLife: _.random(1, 20),
       shelfLifeUnit: faker.random.arrayElement([
@@ -96,6 +99,7 @@ async function initProduct() {
       ]),
       serviceProvider: faker.lorem.sentence(),
       hint: faker.lorem.paragraph(),
+      sellTime: faker.date.future(),
       group: arrayElement(['in-sale', 'starter']),
       brand: arrayElement(brands).id,
       category: c.id,
@@ -193,7 +197,8 @@ async function initAddress() {
 }
 async function initOrder() {
   const users = await User.find();
-  const orders = _.range(0, 200).map(() => ({
+  const test = users.find((u) => u.name === 'test');
+  const orders = _.range(0, 200).map((i) => ({
     shippedAt: faker.date.past(),
     deliveredAt: faker.date.recent(),
     payedAt: faker.date.past(),
@@ -205,7 +210,7 @@ async function initOrder() {
       'toShip',
       'toConfirm',
     ]),
-    owner: arrayElement(users).id,
+    owner: i > 100 ? test.id : arrayElement(users).id,
   }));
   await Order.createEach(orders);
 }
@@ -226,9 +231,10 @@ async function initMessage() {
     title: faker.lorem.word(),
     digest: faker.lorem.sentence(),
     content: faker.lorem.paragraphs(3),
-    owner: arrayElement(users).id,
+    // owner: arrayElement(users).id,
   }));
   await Message.createEach(msgs);
+
 }
 module.exports = {
   friendlyName: 'Init db',

@@ -4,17 +4,18 @@ module.exports = {
   description: 'Address user.',
 
   inputs: {
-    id: {
+    token: {
       type: 'string',
     },
   },
 
   exits: {},
 
-  fn: async function(inputs) {
-    const {id} = inputs.id;
+  fn: async function(inputs,exits) {
+    // const {id} = inputs.id;
+    const id = this.req.uid;
     const user = await User.findOne({ id }).populate('addresses');
     // All done.
-    return user.addresses;
+    return exits.success(user.addresses);
   },
 };
