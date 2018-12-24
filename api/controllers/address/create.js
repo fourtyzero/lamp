@@ -4,9 +4,6 @@ module.exports = {
   description: 'Create address.',
 
   inputs: {
-    uid: {
-      type: 'string',
-    },
     address: {
       type: 'json',
     },
@@ -14,8 +11,9 @@ module.exports = {
 
   exits: {},
 
-  fn: async function({ uid, address }) {
-    const addr = await Address.create({ owner: uid, ...address }).fetch();
+  fn: async function({ address }) {
+    const id = this.req.uid;
+    const addr = await Address.create({ owner: id, ...address }).fetch();
     // All done.
     return addr;
   },

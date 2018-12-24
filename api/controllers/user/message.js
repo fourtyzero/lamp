@@ -15,7 +15,8 @@ module.exports = {
     const id = this.req.uid;
     const user = await User.findOne({ id }).populate('messages');
 
-    // All done.
+    // // All done.
     return  exits.success(user.messages);
+    // return exits.success();
   },
 };

@@ -17,14 +17,12 @@ module.exports = async function(req, res, proceed) {
   // if (req.me) {
   //   return proceed();
   // }
+  // get token from `Authorization` header
   let token;
-  if (req.method === 'GET') {
-    // get token from `Authorization` header
-    const auth = req.headers.authorization;
-    // remove `Bearer `
-    if (auth) {token = auth.substring(7);}
-  } else {
-    token = req.body.token;
+  const auth = req.headers.authorization;
+  // remove `Bearer `
+  if (auth) {
+    token = auth.split('Bearer ')[1];
   }
   // const { token } = req.body;
   try {

@@ -34,7 +34,9 @@ module.exports.policies = {
   'address/delete': 'is-logged-in',
   'address/update': 'is-logged-in',
 
-  // 'user/*': 'is-logged-in'
-  'user/message': 'is-logged-in'
+  'user/*': 'is-logged-in',
+  'user/login': true,
+  'user/register': true,
+  // 'user/message': 'is-logged-in'
 
 };

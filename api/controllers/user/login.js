@@ -42,7 +42,7 @@ module.exports = {
       .intercept('incorrect', 'badCombo');
     // return a token
     const token = await sails.helpers.sign.with({
-      payload: { id: user.id },
+      payload: { uid: user.id },
     });
     // return _.omit({ ...user, token }, ['password']);
     return exits.success(_.omit({ ...user, token }, ['password']));
