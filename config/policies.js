@@ -37,6 +37,10 @@ module.exports.policies = {
   'user/*': 'is-logged-in',
   'user/login': true,
   'user/register': true,
+
+
+  'order/create': 'is-logged-in',
+  'order/update': 'is-logged-in',
   // 'user/message': 'is-logged-in'
 
 };

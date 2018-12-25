@@ -27,6 +27,10 @@ module.exports = {
       type: 'number',
       description: '被分享的次数',
     },
+    images: {
+      type: 'json',
+
+    },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

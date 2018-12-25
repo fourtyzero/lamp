@@ -13,9 +13,9 @@ module.exports = {
 
   exits: {},
 
-  fn: async function(inputs) {
+  fn: async function({ id }, exits) {
     // All done.
-    const product = await Product.findOne({ id: inputs.id });
-    return product;
+    const product = await Product.findOne({ id }).populate('brand');
+    return exits.success(product);
   },
 };

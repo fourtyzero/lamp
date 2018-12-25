@@ -15,7 +15,12 @@ const cats = [
 ];
 const arrayElement = faker.random.arrayElement;
 const fakeImage = (w, h) => `http://dummyimage.com/${w}x${h}`;
-const loremImage = (w, h) => `http://picsum.photos/${w}x${h}`;
+const loremImage = (w, h, unique) => {
+  if (unique) {
+    return `http://picsum.photos/${w}x${h}?${_.random(0, 1, true)}`;
+  }
+  return `http://picsum.photos/${w}x${h}`;
+};
 const randomChinese = (start, end) => {
   start = start || 19968;
   end = end || 30000;
@@ -35,7 +40,7 @@ async function initTag() {
   const cats = await Category.find();
   let tags = _.range(0, 200).map(() => ({
     title: loremWord(arrayElement([2, 3, 4])),
-    image: loremImage(200, 200),
+    image: loremImage(200, 200, true),
     belongsTo: arrayElement(cats).id,
   }));
   // add sepcial tag to '母婴用品'
@@ -234,7 +239,6 @@ async function initMessage() {
     // owner: arrayElement(users).id,
   }));
   await Message.createEach(msgs);
-
 }
 module.exports = {
   friendlyName: 'Init db',

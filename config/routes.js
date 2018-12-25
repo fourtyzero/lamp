@@ -60,11 +60,16 @@ module.exports.routes = {
   '/api/v1/product/search': { action: 'product/search' },
   '/api/v1/product/reviews': { action: 'product/reviews' },
 
+  '/api/v1/search/hot': { action: 'search/hot' },
 
   '/api/v1/category/all': { action: 'category/all' },
   '/api/v1/category/search/': { action: 'category/search' },
   '/api/v1/category/tags/': { action: 'category/tags' },
   '/api/v1/tag/product': { action: 'tag/product' },
+
+  // order
+  '/api/v1/order/create': { action: 'order/create' },
+  '/api/v1/order/update': { action: 'order/update' },
 
   '/api/v1/review': { action: 'review/byid' },
 
