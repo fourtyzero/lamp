@@ -10,7 +10,7 @@ module.exports = {
     // ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     // ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     // ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    reciever: {
+    receiver: {
       type: 'string',
       description: '收件人姓名'
     },

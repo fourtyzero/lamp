@@ -4,9 +4,6 @@ module.exports = {
   description: 'Address user.',
 
   inputs: {
-    token: {
-      type: 'string',
-    },
   },
 
   exits: {},

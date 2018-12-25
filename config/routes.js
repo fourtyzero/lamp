@@ -82,6 +82,7 @@ module.exports.routes = {
   '/api/v1/user/message': { action: 'user/message' },
   '/api/v1/user/review': { action: 'user/review' },
   '/api/v1/user/footprint': { action: 'user/footprint' },
+  '/api/v1/user/address': { action: 'user/address' },
 
   'POST /api/v1/user/review/create': { action: 'review/create' },
 

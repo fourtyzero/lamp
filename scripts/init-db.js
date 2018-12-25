@@ -188,7 +188,7 @@ async function initAddress() {
   const users = await User.find();
   const addrs = _.range(0, 100).map(() => {
     return {
-      reciever: faker.name.findName(),
+      receiver: faker.name.findName(),
       phone: faker.phone.phoneNumber(),
       province: faker.address.state(),
       area: faker.address.city(),
